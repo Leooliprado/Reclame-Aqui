@@ -34,7 +34,7 @@ Este projeto tem como objetivo servir como um treinamento para aprender e pratic
   
 ## Como Executar o Projeto
 
-### Frontend (JavaScript + Bootstrap)
+### Baixe o Reclame Aqui
 
 1. Baixe ou clone este repositório:
    ```bash
