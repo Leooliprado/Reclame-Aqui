@@ -38,4 +38,4 @@ Este projeto tem como objetivo servir como um treinamento para aprender e pratic
 
 1. Baixe ou clone este repositório:
    ```bash
-   git clone https://github.com/Leooliprado/Reclame-Aqu.git
+   git clone https://github.com/Leooliprado/Reclame-Aqui.git
