@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body data-bs-theme="dark">
+
+    <!-- Barra de navegação -->
+    <nav class="navbar fixed-top bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">sistema-L Reclame Aqui</a>
+        </div>
+    </nav>
+
+    <br><br>
+
+    <form id="meuFormulario" class="alert alert-dark" role="alert" data-bs-theme="dark">
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Endereço de e-mail</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="seuemail@exemplo.com">
+        </div><br>
+
+        <!-- Senha -->
+        <label for="inputPassword" class="form-label">Senha</label>
+        <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Senha123@">
+        <div id="passwordHelpBlock" class="form-text">
+            A senha deve ter entre 8 e 20 caracteres, conter letras e números e não deve conter espaços, caracteres especiais ou emojis.
+        </div> <br>
+
+        <!-- Nome -->
+        <div class="mb-3">
+            <label for="nomeInput" class="form-label">Nome completo</label>
+            <input type="text" class="form-control" id="nomeInput" placeholder="Seu nome">
+        </div><br>
+
+        <!-- Estado -->
+        <label for="estadoInput" class="form-label">Estado</label>
+        <input class="form-control" list="datalistOptionsEstado" id="estadoInput" placeholder="Selecione seu estado">
+        <datalist id="datalistOptionsEstado">
+            <option value="Acre (AC)">
+            <option value="Alagoas (AL)">
+            <option value="Amapá (AP)">
+            <option value="Amazonas (AM)">
+            <option value="Bahia (BA)">
+            <option value="Ceará (CE)">
+            <option value="Distrito Federal (DF)">
+            <option value="Espírito Santo (ES)">
+            <option value="Goiás (GO)">
+            <option value="Maranhão (MA)">
+            <option value="Mato Grosso (MT)">
+            <option value="Mato Grosso do Sul (MS)">
+            <option value="Minas Gerais (MG)">
+            <option value="Pará (PA)">
+            <option value="Paraíba (PB)">
+            <option value="Paraná (PR)">
+            <option value="Pernambuco (PE)">
+            <option value="Piauí (PI)">
+            <option value="Rio de Janeiro (RJ)">
+            <option value="Rio Grande do Norte (RN)">
+            <option value="Rio Grande do Sul (RS)">
+            <option value="Rondônia (RO)">
+            <option value="Roraima (RR)">
+            <option value="Santa Catarina (SC)">
+            <option value="São Paulo (SP)">
+            <option value="Sergipe (SE)">
+            <option value="Tocantins (TO)">
+        </datalist>  <br>
+        <!-- Gênero -->
+        <label for="generoInput" class="form-label">Gênero</label>
+        <input class="form-control" list="datalistOptionsGenero" id="generoInput" placeholder="Selecione seu gênero">
+        <datalist id="datalistOptionsGenero">
+            <option value="Masculino">
+            <option value="Feminino">
+            <option value="Outro">
+        </datalist><br>
+
+        <!-- Problema -->
+        <div class="mb-3">
+            <label for="problemaTextarea" class="form-label">Descreva o problema enfrentado</label>
+            <textarea class="form-control" id="problemaTextarea" rows="3"></textarea>
+        </div><br>
+
+        <!-- Botão de envio -->
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-outline-primary">Enviar para a ouvidoria</button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('meuFormulario').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita o recarregamento da página
+    
+            // Coletar dados
+            const formData = {
+                email: document.getElementById('emailInput').value,
+                senha: document.getElementById('inputPassword').value,
+                nome: document.getElementById('nomeInput').value,
+                estado: document.getElementById('estadoInput').value,
+                genero: document.getElementById('generoInput').value,
+                problema: document.getElementById('problemaTextarea').value
+            };
+    
+            // Validações
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                alert('Por favor, insira um e-mail válido!');
+                return;
+            }
+    
+            if (formData.senha.length < 8 || formData.senha.length > 20 || 
+                !/\d/.test(formData.senha) || !/[a-zA-Z]/.test(formData.senha)) {
+                alert('A senha deve ter entre 8 e 20 caracteres e conter letras e números!');
+                return;
+            }
+    
+            // Enviar dados ao servidor
+            fetch('http://10.0.0.179:5000/informacao', { // Corrigido nome do endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Erro na resposta do servidor');
+                return response.json();
+            })
+            .then(data => {
+                alert('Formulário enviado com sucesso!');
+                document.getElementById('meuFormulario').reset(); // Limpa o formulário
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao enviar formulário: ' + error.message);
+            });
+        });
+    </script>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-light text-center py-3 mt-2">
+        <p>© 2025 sistema-l.ddns.net. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
