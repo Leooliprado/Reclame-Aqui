@@ -11,7 +11,7 @@ Este projeto tem como objetivo servir como um treinamento para aprender e pratic
    Aprender a manipular rotas em JavaScript para criar navegação entre diferentes páginas e funcionalidades em uma aplicação web, utilizando o **JavaScript** como a principal linguagem de lógica no frontend.
 
 3. **Rotas em Python:**  
-   Desenvolver uma compreensão de como as rotas funcionam no backend, utilizando **Python** (com frameworks como Flask ou Django), permitindo a criação de APIs ou sites dinâmicos.
+   Desenvolver uma compreensão de como as rotas funcionam no backend, utilizando **Python** (com frameworks como Flask), permitindo a criação de APIs ou sites dinâmicos.
 
 ## Tecnologias Utilizadas
 
@@ -20,15 +20,17 @@ Este projeto tem como objetivo servir como um treinamento para aprender e pratic
 - **JavaScript**
   - Manipulação de rotas com JavaScript (Navegação entre páginas)
 - **Python**
-  - Flask (ou Django) para criação de rotas no backend
+  - Flask para criação de rotas no backend
   - APIs RESTful
 
 ## Funcionalidades
 
-- Interface responsiva e moderna utilizando Bootstrap.
-- Navegação entre páginas via rotas utilizando JavaScript.
-- Backend com Python, implementando rotas para responder a requisições HTTP.
-- Exemplos de formulários interativos com validações.
+- Interface responsiva e moderna utilizando **Bootstrap**.
+- **Formulário de Reclamação** que coleta informações como **Email**, **Senha**, **Nome**, **Estado**, **Gênero**, e o **Problema enfrentado** pelo usuário.
+- Validações do formulário, incluindo verificação de email e senha no frontend.
+- O formulário envia os dados ao servidor, permitindo o armazenamento ou processamento no backend.
+- Backend com **Python** (Flask) para tratar as informações enviadas, armazenando-as em um arquivo **CSV** que serve como base de dados.
+- O arquivo **CSV** armazena as informações coletadas no formulário, permitindo fácil leitura e manipulação.
   
 ## Como Executar o Projeto
 
