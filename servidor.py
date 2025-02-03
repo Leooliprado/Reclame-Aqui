@@ -32,8 +32,7 @@ def receber_dados():
     genero = data['genero']
     problema = data['problema']
 
-    print(f"Recebido: {data}")  # Apenas para debug
-
+    print(f"Recebido: {data}")  
     # Abre o arquivo para escrita no modo append
     with open(OUTPUT_FILE, 'a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
@@ -48,5 +47,5 @@ def receber_dados():
 
     return jsonify({"mensagem": "Dados salvos com sucesso!"}), 200
 
-if __name__ == '__main__':  # Verifica se o script está sendo executado diretamente
+if __name__ == '__main__':  
     app.run(host="10.0.0.179", port=5000, debug=False)
